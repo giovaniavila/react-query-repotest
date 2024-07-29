@@ -17,12 +17,12 @@ const Sidebar = () => {
       <Flex direction="column" alignItems="start" gap="1.875rem" mt="1.875rem" ml=".625rem">
         <ButtonLink
           href="/home"
-          buttonName="Home"
+          buttonName="Add User"
           image={HomeImage}
         />
         <ButtonLink
-          href="/somepage"
-          buttonName="Some Page"
+          href="/users"
+          buttonName="Users"
           image={InsightImage}
         />
       </Flex>
