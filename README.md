@@ -1,2 +1,2 @@
-# template-repo-base
-A base repository for starting new projects with essential configurations and structures.
+# :large_blue_circle: react query fundamentals
+starting react query lib for efficient data fetching and caching using React Query.
