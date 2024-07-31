@@ -1,6 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ToastContainer } from "react-toastify";
 
 import theme from "./theme";
 import MainRoutes from "./routes";
@@ -20,6 +21,7 @@ function App() {
       <ChakraProvider theme={theme}>
         <MainRoutes />
         <ReactQueryDevtools />
+        <ToastContainer />
       </ChakraProvider>
     </QueryClientProvider>
   );

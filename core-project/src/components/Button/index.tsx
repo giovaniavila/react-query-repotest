@@ -10,6 +10,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 interface ButtonProps extends ChakraButtonProps {
   text: string;
+  bgcolor: string;
 }
 
 interface ButtonLinkProps {
@@ -18,12 +19,12 @@ interface ButtonLinkProps {
   image?: React.ReactNode;
 }
 
-export const Button = ({ text, ...rest }: ButtonProps) => {
+export const Button = ({ text, bgcolor, ...rest }: ButtonProps) => {
   return (
     <ChakraButton
       marginTop="5px"
       borderRadius="5px"
-      backgroundColor="brand.500"
+      backgroundColor={bgcolor}
       color="white"
       {...rest}
       _hover={{ filter: "brightness(0.8)", transition: ".3s" }}

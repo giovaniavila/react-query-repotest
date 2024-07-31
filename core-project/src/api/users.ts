@@ -5,3 +5,10 @@ export const getUsers = async (): Promise<UserProps[]> => {
   const response = await axios.get("http://localhost:3000/users");
   return response.data;
 };
+
+export const postUser = async (newUser: UserProps): Promise<UserProps> => {
+  const response = await axios.post("http://localhost:3000/users", newUser, {
+    headers: { "Content-type": "application/json" },
+  });
+  return response.data;
+};
