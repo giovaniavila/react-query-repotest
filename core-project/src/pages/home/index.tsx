@@ -20,7 +20,7 @@ const Home = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const { mutate, isError, isSuccess, error } = useCreateUser();
+  const { mutate } = useCreateUser();
 
   return (
     <Grid gridTemplateColumns=".2fr 1fr" h="100vh">
@@ -52,8 +52,6 @@ const Home = () => {
           />
         </FormControl>
         <Button type="submit" text="enviar" bgcolor="#121e30" />
-        {isError && <p>Erro ao criar usuário: {error?.message}</p>}
-        {isSuccess && <p>Usuário criado com sucesso!</p>}
       </Stack>
     </Grid>
   );

@@ -12,3 +12,7 @@ export const postUser = async (newUser: UserProps): Promise<UserProps> => {
   });
   return response.data;
 };
+
+export const deleteUser = async (userId: number): Promise<void> => {
+  await axios.delete(`http://localhost:3000/users/${userId}`);
+};

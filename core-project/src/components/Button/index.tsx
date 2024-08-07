@@ -6,6 +6,7 @@ import {
   Flex,
   Image,
 } from "@chakra-ui/react";
+import { ReactNode } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 interface ButtonProps extends ChakraButtonProps {
@@ -19,10 +20,11 @@ interface ButtonLinkProps {
   image?: string;
 }
 
-interface ButtonCardProps {
-  text: string,
+interface ButtonCardProps extends ChakraButtonProps{
+  text: ReactNode,
   bgColor: string,
   textColor?: string,
+  onClick?: () => void
 }
 
 export const Button = ({ text, bgcolor, ...rest }: ButtonProps) => {
@@ -64,9 +66,9 @@ export const ButtonLink = ({
   );
 };
 
-export const ButtonCard = ({text, bgColor, textColor}: ButtonCardProps) => {
+export const ButtonCard = ({text, bgColor, textColor, onClick}: ButtonCardProps) => {
   return (
-    <ChakraButton bgColor={bgColor} color={textColor} _hover={{filter: "brightness(0.8)"}}>
+    <ChakraButton bgColor={bgColor} color={textColor} onClick={onClick} _hover={{filter: "brightness(0.8)"}}>
       {text}
     </ChakraButton>
   )
