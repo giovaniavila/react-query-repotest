@@ -16,7 +16,13 @@ interface ButtonProps extends ChakraButtonProps {
 interface ButtonLinkProps {
   href: string;
   buttonName: string;
-  image?: React.ReactNode;
+  image?: string;
+}
+
+interface ButtonCardProps {
+  text: string,
+  bgColor: string,
+  textColor?: string,
 }
 
 export const Button = ({ text, bgcolor, ...rest }: ButtonProps) => {
@@ -57,3 +63,11 @@ export const ButtonLink = ({
     </Box>
   );
 };
+
+export const ButtonCard = ({text, bgColor, textColor}: ButtonCardProps) => {
+  return (
+    <ChakraButton bgColor={bgColor} color={textColor} _hover={{filter: "brightness(0.8)"}}>
+      {text}
+    </ChakraButton>
+  )
+}

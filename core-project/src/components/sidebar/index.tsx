@@ -9,7 +9,7 @@ const Sidebar = () => {
     <Flex
       flexDir="column"
       gap="10px"
-      backgroundColor="background.50"
+      backgroundColor="blue.900"
       justifyItems="center"
       p="1.25rem"
     >
