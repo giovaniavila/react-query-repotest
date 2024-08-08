@@ -6,17 +6,27 @@ import {
   Heading,
   Text,
   Flex,
+  useDisclosure,
 } from "@chakra-ui/react";
 import Sidebar from "../../components/sidebar";
 import { useUsers } from "../../queries/useUsers";
 import { ButtonCard } from "../../components/Button";
 import { useDeleteUser } from "../../mutations/users";
-import { Spinner } from '@chakra-ui/react'
+import { Spinner } from "@chakra-ui/react";
+import { EditUserModal } from "./modals/editUserModal";
+import { useState } from "react";
 
 const UserPage = () => {
   const { data } = useUsers();
   const { mutate: deleteUser, isPending } = useDeleteUser();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
 
+  const handleEditClick = (userId: number) => {
+    setSelectedUserId(userId);
+    onOpen();
+  };
+  
   return (
     <Grid gridTemplateColumns=".2fr 1fr" h="100vh">
       <Sidebar />
@@ -42,6 +52,7 @@ const UserPage = () => {
                   text="edit"
                   bgColor="blue.800"
                   textColor="gray.200"
+                  onClick={() => user.id != null && handleEditClick(user.id)}
                 />
                 <ButtonCard
                   text={isPending ? <Spinner size="sm" /> : "delete"}
@@ -61,6 +72,7 @@ const UserPage = () => {
           ))}
         </List>
       </Box>
+      <EditUserModal isOpen={isOpen} onClose={onClose} userId={selectedUserId}/>
     </Grid>
   );
 };

@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { UserProps } from "../interface/users";
-import { deleteUser, postUser } from "../api/users";
+import { deleteUser, editUser, postUser } from "../api/users";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useUsers } from "../queries/useUsers";
@@ -33,6 +33,25 @@ export const useDeleteUser = () => {
     },
     onError: () => {
       toast.error("Tivemos problemas ao deletar o usuário :(", {
+        position: "bottom-left",
+      });
+    },
+  });
+};
+
+export const useEditUser = () => {
+  const { refetch } = useUsers();
+  return useMutation({
+    mutationFn: ({ userId, updatedUser }: { userId: number; updatedUser: UserProps }) => 
+      editUser(userId, updatedUser),
+    onSuccess: () => {
+      toast.success("Usuário editado com sucesso!", {
+        position: "bottom-left",
+      });
+      refetch();
+    },
+    onError: () => {
+      toast.error("Erro ao editar o usuário!", {
         position: "bottom-left",
       });
     },
