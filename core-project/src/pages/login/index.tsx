@@ -7,9 +7,9 @@ const Login = () => {
   return (
     <Grid gridTemplateColumns={{ base: "1fr", lg: "1.3fr 1fr " }} h="100vh">
       <Box>
-        <Image src={login} h="100%" objectFit="cover" />
+        <Image src={login} h="100%" objectFit="cover"/>
       </Box>
-      <Grid placeContent="start center" padding={{ base: "2rem", lg: "5rem" }}>
+      <Grid placeContent="start center" padding={{ base: "1rem", lg: "5rem" }}>
         <Flex
           flexDirection="column"
           gap="5px"

@@ -1,4 +1,8 @@
-import { useMutation } from "@tanstack/react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { UserProps } from "../interface/users";
 import { deleteUser, editUser, postUser } from "../api/users";
 import { toast } from "react-toastify";
@@ -6,9 +10,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useUsers } from "../queries/useUsers";
 
 export const useCreateUser = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (newUser: UserProps) => postUser(newUser),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] });
       toast.success("Usuário criado !", {
         position: "bottom-left",
       });
@@ -42,8 +48,13 @@ export const useDeleteUser = () => {
 export const useEditUser = () => {
   const { refetch } = useUsers();
   return useMutation({
-    mutationFn: ({ userId, updatedUser }: { userId: number; updatedUser: UserProps }) => 
-      editUser(userId, updatedUser),
+    mutationFn: ({
+      userId,
+      updatedUser,
+    }: {
+      userId: number;
+      updatedUser: UserProps;
+    }) => editUser(userId, updatedUser),
     onSuccess: () => {
       toast.success("Usuário editado com sucesso!", {
         position: "bottom-left",

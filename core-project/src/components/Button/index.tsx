@@ -5,13 +5,14 @@ import {
   Link as ChakraLink,
   Flex,
   Image,
+  Text,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 interface ButtonProps extends ChakraButtonProps {
   text: string;
-  bgcolor: string;
+  bgcolor?: string;
 }
 
 interface ButtonLinkProps {
@@ -20,11 +21,9 @@ interface ButtonLinkProps {
   image?: string;
 }
 
-interface ButtonCardProps extends ChakraButtonProps{
-  text: ReactNode,
-  bgColor: string,
-  textColor?: string,
-  onClick?: () => void
+interface ButtonCardProps extends ChakraButtonProps {
+  text: ReactNode;
+  onClick?: () => void;
 }
 
 export const Button = ({ text, bgcolor, ...rest }: ButtonProps) => {
@@ -56,20 +55,42 @@ export const ButtonLink = ({
       backgroundColor="transparent"
       color="text.default"
       fontWeight="500"
-      _hover={{ filter: "brightness(0.8)", transition: ".3s" }}
     >
       <Flex alignItems="center" gap="10px">
         <Image src={image} />
-        {buttonName}
+        <Text
+          position="relative"
+          _before={{
+            content: '""',
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "0%",
+            height: "2px",
+            backgroundColor: "yellow.500",
+            transition: "width 0.3s ease-in-out",
+          }}
+          _hover={{
+            _before: {
+              width: "100%",
+            },
+          }}
+        >
+          {buttonName}
+        </Text>
       </Flex>
     </Box>
   );
 };
 
-export const ButtonCard = ({text, bgColor, textColor, onClick}: ButtonCardProps) => {
+export const ButtonCard = ({ text, onClick, ...rest }: ButtonCardProps) => {
   return (
-    <ChakraButton bgColor={bgColor} color={textColor} onClick={onClick} _hover={{filter: "brightness(0.8)"}}>
+    <ChakraButton
+      onClick={onClick}
+      {...rest}
+      _hover={{ filter: "brightness(0.8)" }}
+    >
       {text}
     </ChakraButton>
-  )
-}
+  );
+};

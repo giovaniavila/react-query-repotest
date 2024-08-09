@@ -28,7 +28,7 @@ const UserPage = () => {
   };
   
   return (
-    <Grid gridTemplateColumns=".2fr 1fr" h="100vh">
+    <Grid gridTemplateColumns=".15fr 1fr" h="100vh">
       <Sidebar />
       <Box
         overflowY="auto"
@@ -38,7 +38,7 @@ const UserPage = () => {
         sx="scrollbarStyle"
         m="2rem 2rem "
       >
-        <List spacing={3}>
+        <List spacing={10}>
           {data?.map((user) => (
             <ListItem
               key={user.id}
@@ -50,17 +50,18 @@ const UserPage = () => {
               <Flex gap="10px">
                 <ButtonCard
                   text="edit"
-                  bgColor="blue.800"
-                  textColor="gray.200"
+                  bgColor="black.50"
+                  textColor="white"
                   onClick={() => user.id != null && handleEditClick(user.id)}
                 />
                 <ButtonCard
                   text={isPending ? <Spinner size="sm" /> : "delete"}
-                  bgColor="red.400"
+                  textColor="red.500"
+                  bgColor="transparent"
                   onClick={() => user.id != null && deleteUser(user.id)}
                 />
               </Flex>
-              <Flex flexDir="column" mt="1.25rem" gap=".5rem">
+              <Flex flexDir="column" mt="1.25rem" gap=".2rem">
                 <Heading as="h1">{user.name}</Heading>
                 <Text as="h2">{user.email}</Text>
               </Flex>
