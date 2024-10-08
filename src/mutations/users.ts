@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useUsers } from "../queries/useUsers";
 
-export const useCreateUser = () => {
+ export const useCreateUser = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (newUser: UserProps) => postUser(newUser),
@@ -25,7 +25,7 @@ export const useCreateUser = () => {
       });
     },
   });
-};
+}; 
 
 export const useDeleteUser = () => {
   const { refetch } = useUsers();
@@ -67,4 +67,4 @@ export const useEditUser = () => {
       });
     },
   });
-};
+}; 

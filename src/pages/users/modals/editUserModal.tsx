@@ -16,7 +16,7 @@ import {
 interface EditUserModalProps {
   isOpen: boolean;
   onClose: () => void;
-  userId: number | null; // Ajuste para número ou null
+  userId: number | null;
 }
 
 export const EditUserModal = ({ isOpen, onClose }: EditUserModalProps) => {
@@ -61,7 +61,6 @@ export const EditUserModal = ({ isOpen, onClose }: EditUserModalProps) => {
             />
           </FormControl>
         </ModalBody>
-
         <ModalFooter>
           <Button
             onClick={onClose}

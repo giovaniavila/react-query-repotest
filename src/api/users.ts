@@ -23,3 +23,5 @@ export const editUser = async (userId: number, updatedUser: UserProps): Promise<
   })
   return response.data
 }
+
+
